@@ -1,5 +1,5 @@
 # Inter-Cars-Api-Tester
-1.General information
+## 1.General information
 
 In order to share XML data you need to send GET request to:
 
@@ -8,9 +8,10 @@ https://katalog.intercars.com.pl/api/v2/External/{action_name}?{parameter_name}=
 A well formatted header needs to look like this (HTTP Header):
 
 For example, 
-kh_kod: 526318
-token: 4a4bf416-0505-4b6d-bd3f-d2b610a1f3bd5
 
+kh_kod: 526318
+
+token: 4a4bf416-0505-4b6d-bd3f-d2b610a1f3bd5
 
 API shares such methods:
 
@@ -18,8 +19,7 @@ API shares such methods:
 
 •GetInvoice (sharing single document)
 
-
-2.Sharing invoices (GetInvoices)
+## Sharing invoices (GetInvoices)
 
 To share such XML data, you need to send GET request to:
 
@@ -30,16 +30,18 @@ Complete request should look like this:
 GET address request:
 https://katalog.intercars.com.pl/api/v2/External/GetInvoices?from=20160301&to=20160601
 
-
 HTTP header:
+
 For example, 
+
 kh_kod: 526318
+
 token: 4a4bf416-0505-4b6d-bd3f-d2b610a1f3bd5
 
 AS a result, you will get an XML document with a list of invoices’ headers.
 
 
-3.Downloading an invoice (GetInvoice)
+## Downloading an invoice (GetInvoice)
 
 To share such XML data, you need to send GET request to:
 
@@ -50,16 +52,17 @@ Complete request should look like this:
 GET address request:
 https://katalog.intercars.com.pl/api/v2/External/GetInvoice?id=110000031
 
-
 HTTP header:
+
 For example,
+
 kh_kod: 526318
+
 token: 4a4bf416-0505-4b6d-bd3f-d2b610a1f3bd5
 
 As a result, you will get an XML document with invoice’s header and the list of items in the document.
 
-
-4.Exemplary request using WebClient object
+## Exemplary request using WebClient object
 
 var serverUrl = https://katalog.intercars.com.pl/api/v2/External/GetInvoice?id= 110000031;
 
@@ -71,13 +74,7 @@ client.Headers["token"] = "4a4bf416-0505-4b6d-bd3f-d2b610a1f3bd";
 
 var result = client.DownloadString(serverUrl);
 
-
-An exemplary Widnows Forms application can be obtained from:
-
-http://download.intercars.eu/cdn/pliki/APITester.zip
-
-
-5.Generating access token
+## Generating access token
 
 In order to generate access token, you need to log-in to Your IC_Katalog ONLINE account and go to “Settings” section. Next, choose “Share documents online” button. If your e-mail address has not been confirmed yet, you need to confirm it now clicking “Confirm e-mail”.
 
