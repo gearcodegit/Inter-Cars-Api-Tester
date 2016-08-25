@@ -4,8 +4,8 @@
 
 Aby pobrać dane w formacie XML należy wysłać zapytanie GET pod adres: https://katalog.intercars.com.pl/api/v2/External/{nazwa_akcji}?{nazwa_parametru}={wartość_parametru}, podając odpowiednią nazwę akcji. W zależności od wołanej metody wymagane są jej parametry przekazywane w tzw. Query Stringu. Dodatkowo każde zapytanie musi zawierać w nagłówku dwie wartości takie jak „kh_kod” oraz „token”. Kh_kod jest to numer klienta w InterCars, natomiast token jest specjalnym kluczem, który można uzyskać w ustawieniach programu IC_Katalog ONLINE.Poprawnie sformatowany nagłówek (Header HTTP) musi wyglądać w taki sposób:
 
-Na przykład, 
 kh_kod: 526318
+
 token: 4a4bf416-0505-4b6d-bd3f-d2b610a1f3bd5
 
 API udostępnia następujące metody:
@@ -20,10 +20,13 @@ API udostępnia następujące metody:
 Aby pobrać dane w formacie XML, należy wysłać zapytanie GET pod adres: https://katalog.intercars.com.pl/api/v2/External/, podając nazwę akcji GetInvoices oraz odpowiednie wartości parametrów oznaczone jako „from” (data początkowa), a także „to” (data końcowa). Całe zapytanie powinno mieć następującą postać. 
 
 Adres żądania GET:
+
 https://katalog.intercars.com.pl/api/v2/External/GetInvoices?from=20160301&to=20160601
+
 Nagłówek HTTP:
-Na przykład,
+
 kh_kod: 526318
+
 token: 4a4bf416-0505-4b6d-bd3f-d2b610a1f3bd5
 
 W odpowiedzi otrzymamy sformatowany dokument XML zawierający listę nagłówków faktur. 
@@ -36,8 +39,11 @@ Aby pobrać dane w formacie XML, należy wysłać zapytanie GET pod adres: https
 Adres żądania GET:
 
 https://katalog.intercars.com.pl/api/v2/External/GetInvoice?id=110000031
+
 Nagłówek HTTP:
+
 Na przykład,
+
 kh_kod: 526318
 
 token: 4a4bf416-0505-4b6d-bd3f-d2b610a1f3bd5
@@ -48,9 +54,13 @@ W odpowiedzi otrzymamy sformatowany dokument XML zawierający nagłówek oraz po
 <b>Przykładowe wywołanie z użyciem obiektu WebClient</b>
 
 var serverUrl = https://katalog.intercars.com.pl/api/v2/External/GetInvoice?id= 110000031;
+
 var client = new System.Net.WebClient();
+
 client.Headers["kh_kod"] = "526318";
+
 client.Headers["token"] = "4a4bf416-0505-4b6d-bd3f-d2b610a1f3bd";
+
 var result = client.DownloadString(serverUrl);
 
 
