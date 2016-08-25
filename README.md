@@ -1,5 +1,5 @@
 # Inter-Cars-Api-Tester
-## 1.General information
+## General information
 
 In order to share XML data you need to send GET request to:
 
