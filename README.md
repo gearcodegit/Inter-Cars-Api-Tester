@@ -1,57 +1,65 @@
 # Inter-Cars-Api-Tester
+1.General information
 
-## Informacje ogólne
+In order to share XML data you need to send GET request to:
 
-Aby pobrać dane w formacie XML należy wysłać zapytanie GET pod adres: https://katalog.intercars.com.pl/api/v2/External/{nazwa_akcji}?{nazwa_parametru}={wartość_parametru}, podając odpowiednią nazwę akcji. W zależności od wołanej metody wymagane są jej parametry przekazywane w tzw. Query Stringu. Dodatkowo każde zapytanie musi zawierać w nagłówku dwie wartości takie jak „kh_kod” oraz „token”. Kh_kod jest to numer klienta w InterCars, natomiast token jest specjalnym kluczem, który można uzyskać w ustawieniach programu IC_Katalog ONLINE.Poprawnie sformatowany nagłówek (Header HTTP) musi wyglądać w taki sposób:
+https://katalog.intercars.com.pl/api/v2/External/{action_name}?{parameter_name}={parameter_value}, defining specific name of an action. Its parameters need to be given in so called Query String, depending on a type of a method. Additionally, each request must have two values in its header: “kh_kod” and “token”. Kh_kod is a customer’s number in Inter Cars system. Token is a specific key that can be obtained in “Settings” section in IC_Katalog ONLINE programme.
 
+A well formatted header needs to look like this (HTTP Header):
+
+For example, 
 kh_kod: 526318
-
 token: 4a4bf416-0505-4b6d-bd3f-d2b610a1f3bd5
 
-API udostępnia następujące metody:
 
-• GetInvoices (Pobieranie dokumentu z uwzględnieniem zakresu dat)
+API shares such methods:
 
-• GetInvoice (Pobieranie pojedynczego dokumentu)
+•GetInvoices (sharing documents from a date range)
+
+•GetInvoice (sharing single document)
 
 
-## Pobieranie dokumentów sprzedaży (GetInvoices)
+2.Sharing invoices (GetInvoices)
 
-Aby pobrać dane w formacie XML, należy wysłać zapytanie GET pod adres: https://katalog.intercars.com.pl/api/v2/External/, podając nazwę akcji GetInvoices oraz odpowiednie wartości parametrów oznaczone jako „from” (data początkowa), a także „to” (data końcowa). Całe zapytanie powinno mieć następującą postać. 
+To share such XML data, you need to send GET request to:
 
-Adres żądania GET:
+https://katalog.intercars.com.pl/api/v2/External/, fill the name of an action GetInvoices and fill its parameters marked as „from” (initial date), and „to” (finish date) 
 
+Complete request should look like this: 
+
+GET address request:
 https://katalog.intercars.com.pl/api/v2/External/GetInvoices?from=20160301&to=20160601
 
-Nagłówek HTTP:
 
+HTTP header:
+For example, 
 kh_kod: 526318
-
 token: 4a4bf416-0505-4b6d-bd3f-d2b610a1f3bd5
 
-W odpowiedzi otrzymamy sformatowany dokument XML zawierający listę nagłówków faktur. 
+AS a result, you will get an XML document with a list of invoices’ headers.
 
 
-## Pobieranie dokumentu sprzedaży (GetInvoice)
+3.Downloading an invoice (GetInvoice)
 
-Aby pobrać dane w formacie XML, należy wysłać zapytanie GET pod adres: https://katalog.intercars.com.pl/api/v2/External/ podając nazwę akcji GetInvoice, oraz wartości dla parametru „id”. Całe zapytanie powinno mieć następującą postać. 
+To share such XML data, you need to send GET request to:
 
-Adres żądania GET:
+https://katalog.intercars.com.pl/api/v2/External/ and fill the name of an action GetInvoice, and fill its parameters marked as „id”. 
 
+Complete request should look like this: 
+
+GET address request:
 https://katalog.intercars.com.pl/api/v2/External/GetInvoice?id=110000031
 
-Nagłówek HTTP:
 
-Na przykład,
-
+HTTP header:
+For example,
 kh_kod: 526318
-
 token: 4a4bf416-0505-4b6d-bd3f-d2b610a1f3bd5
 
-W odpowiedzi otrzymamy sformatowany dokument XML zawierający nagłówek oraz pozycje faktury. 
+As a result, you will get an XML document with invoice’s header and the list of items in the document.
 
 
-## Przykładowe wywołanie z użyciem obiektu WebClient
+4.Exemplary request using WebClient object
 
 var serverUrl = https://katalog.intercars.com.pl/api/v2/External/GetInvoice?id= 110000031;
 
@@ -64,7 +72,15 @@ client.Headers["token"] = "4a4bf416-0505-4b6d-bd3f-d2b610a1f3bd";
 var result = client.DownloadString(serverUrl);
 
 
-## Generowanie tokenów dostępowych
+An exemplary Widnows Forms application can be obtained from:
 
-Aby otrzymać token. należy zalogować się na swoje konto w programie IC_Katalog ONLINE, przejść w „Ustawienia”, a następnie w „Udostępnianie dokumentów online”. Jeśli mamy niezweryfikowany adres e-mail, należy go potwierdzić wciskając przycisk „Potwierdź e-mail”. W przypadku, kiedy nie jest wyświetlony żaden adres w polu E-mail, skontaktuj się ze swoim przedstawieniem handlowym. Aby wygenerować token, użyj opcji „Generuj Token”. Zostanie wyświetlone okienko z regulaminem usługi. Należy uważnie przeczytać wszystkie postanowienia. Po akceptacji zostanie wygenerowany odpowiedni klucz. Po zamknięciu okna nie będzie możliwości jego ponownego wyświetlenia.
+http://download.intercars.eu/cdn/pliki/APITester.zip
 
+
+5.Generating access token
+
+In order to generate access token, you need to log-in to Your IC_Katalog ONLINE account and go to “Settings” section. Next, choose “Share documents online” button. If your e-mail address has not been confirmed yet, you need to confirm it now clicking “Confirm e-mail”.
+
+If there is no e-mail address in a field, please get in touch with your Inter Cars sales representative. 
+
+To generate token, just click “Generate token” button. After accepting the terms and conditions, a proper token be generated. After closing the window, the token will not be displayed again. Therefore you may copy it to clipboard. 
